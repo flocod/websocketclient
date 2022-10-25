@@ -1,10 +1,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name='theme-color' content="#2b2b2b" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="scss/style.css?v=454545450" />
+    <link rel="stylesheet" href="scss/style.css?v=45450" />
   </head>
   <body>
     <main>
@@ -76,8 +77,10 @@
         let message = `<div class="left">
           <div class="text_item">${e.data}</div>
         </div>`;
+        document.querySelector("#message").pause();
         document.querySelector("#message").play();
         $(".content_text").append(message);
+        document.querySelector(".content_text").scrollTo(0, document.querySelector(".content_text").scrollHeight);
       };
 
       $(".send_bnt").on("click", function () {
@@ -87,8 +90,10 @@
           let message = `<div class="right">
           <div class="text_item send">${$(".form").val()}</div>
         </div>`;
+          document.querySelector("#send").pause();
           document.querySelector("#send").play();
           $(".content_text").append(message);
+          document.querySelector(".content_text").scrollTo(0, document.querySelector(".content_text").scrollHeight);
           $(".form").val("");
         }
       });
