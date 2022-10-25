@@ -52,7 +52,7 @@ main {
 }
 .content_text .form {
   display: block;
-  position: absolute;
+  position: fixed;
   left: 0px;
   bottom: 0px;
   width: 80%;
@@ -69,7 +69,7 @@ main {
   width: 20%;
   z-index: 10;
   height: 38px;
-  position: absolute;
+  position: fixed;
   right: 0px;
   bottom: 0px;
   background: yellow;
