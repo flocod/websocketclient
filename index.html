@@ -1,0 +1,97 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="scss/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="content_text">
+        <!-- <div class="right">
+          <div class="text_item send">hi</div>
+        </div>
+        <div class="left">
+          <div class="text_item"></div>
+        </div> -->
+
+        <textarea class="form" name="" id=""></textarea>
+        <div class="send_bnt">send</div>
+      </div>
+    </main>
+    <audio
+      id="send"
+      onload="this.pause();"
+      style="visibility: hidden"
+      src="sons/send.mp3"
+    ></audio>
+
+    <audio
+      id="message"
+      onload="this.pause();"
+      style="visibility: hidden"
+      src="sons/message.mp3"
+    ></audio>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      // Envoi d'un texte à tous les utilisateurs à travers le serveur
+      function sendText(conn, message) {
+        // Création d'un objet msg qui contient les données
+        // dont le serveur a besoin pour traiter le message
+        var msg = {
+          type: "message",
+          text: message,
+          id: "id",
+          date: Date.now(),
+        };
+
+        // Envoi de l'objet msg à travers une chaîne formatée en JSON
+        conn.send(JSON.stringify(msg));
+
+        // Efface le texte de l'élément input
+        // afin de recevoir la prochaine ligne de texte
+        // que l'utilisateur va saisir
+      }
+
+      var conn = new WebSocket("wss://fentasunlightsarl.com/sever_web/server.php");
+
+    //   var conn = new WebSocket("ws://localhost:8080");
+
+      conn.onopen = function (e) {
+        console.log("Connection established!");
+        conn.send("Hello World");
+      };
+
+      conn.onmessage = function (e) {
+        console.log(e.data);
+        let message = `<div class="left">
+          <div class="text_item">${e.data}</div>
+        </div>`;
+        document.querySelector("#message").play();
+        $(".content_text").append(message);
+      };
+
+      $(".send_bnt").on("click", function () {
+        if ($(".form").val() != "") {
+          conn.send($(".form").val());
+
+          let message = `<div class="right">
+          <div class="text_item send">${$(".form").val()}</div>
+        </div>`;
+          document.querySelector("#send").play();
+          $(".content_text").append(message);
+          $(".form").val("");
+        }
+      });
+
+
+    </script>
+  </body>
+</html>
