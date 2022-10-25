@@ -28,10 +28,13 @@ main {
   display: block;
   width: 100%;
   position: relative !important;
-  height: auto;
-  overflow: hidden;
+  height: calc(100% - 70px);
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding-top: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 0px;
 }
 .content_text .right {
   display: flex;
@@ -48,6 +51,7 @@ main {
 }
 .content_text .send {
   background: green;
+  padding-right: 10px;
   color: var(--text) !important;
 }
 .content_text .form {
