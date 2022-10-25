@@ -28,8 +28,10 @@ border: 1px solid;
     display: block;
     width: 100%;
     position: relative !important;
-    height: 100%;
+    height: auto;
     overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 50px;
     .right{
         display: flex;
         justify-content: right;
